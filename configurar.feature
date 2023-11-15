@@ -1,62 +1,36 @@
-      #language: pt
+                  #language: pt
 
-      Funcionalidade: Configurar produto
-      Como cliente da EBAC-SHOP
-      Quero Configurar meu produto de acordo com meu tamanho e gosto
-      E escolher a quantidade
-      Para depois inserir no carrinho
+                  Funcionalidade: Configurar produto
+                  Como cliente da EBAC-SHOP
+                  Quero Configurar meu produto de acordo com meu tamanho e gosto
+                  E escolher a quantidade
+                  Para depois inserir no carrinho
 
-      Contexto:
-      Dado que eu acesse o EBAC-SHOP como cliente
+                  Contexto:
+                  Dado que eu acesse o EBAC-SHOP como cliente
 
-      Cenário: produto no carrinho válido
-      Quando eu selecionar a cor, o tamanho e a quantidade
-      E escolher a quantidade do produto "<=10"
-      Então o produto deve ser inserido no carrinho e exibir a mensagem "Produto no carrinho com sucesso!"
+                  Cenário: produto no carrinho válido
+                  Quando eu selecionar a cor, o tamanho e a quantidade
+                  E escolher a quantidade do produto "<=10"
+                  Então o produto deve ser inserido no carrinho e exibir a mensagem "Produto no carrinho com sucesso!"
 
-      Cenário: produto no carrinho inválido por tipo cor
-      Quando eu deixar de selecionar a cor e selecionar o tamanho e a quantidade
-      E escolher a quantidade do produto "<=10"
-      Então o deve haver uma mensagem "Selecione a cor da roupa"
+                  Cenário: Limpar produtos
+                  Quando eu quiser que retorne ao estado inicial
+                  E eu clicar no botão "Limpar"
+                  Então o carrinho volta ao estado inicial
 
-      Cenário: produto no carrinho inválido por tipo tamanho
-      Quando eu deixar de selecionar o tamanho e selecionar a cor e a quantidade
-      E escolher a quantidade do produto "1> E <=10"
-      Então o deve haver uma mensagem "Selecione o tamanho da roupa"
+                  Esquema de Cenário: produto inválido no carrinho
+                  Quando eu adicionar o <produto>
+                  E não escolher o <tamanho> ou <quantidade> ou <cor>
+                  Então deve exibir a <mensagem> de erro por ausência de algum requisito
 
-      Cenário: produto no carrinho inválido por tipo quantidade
-      Quando eu selecionar  a cor e o tamanho
-      E escolher a quantidade do produto "0 OU >10"
-      Então o deve haver uma mensagem "Selecione a quantidade válida de roupa"
+                  Exemplos:
+                  | produto    | tamanho | quantidade | cor      | mensagem                                                         |
+                  | "camiseta" | null    | "2"        | "azul"   | "O tamanho do produto deve ser definido!"                        |
+                  | "calça"    | "42"    | null       | "preto"  | "A quantidade do produto deve ser definida!"                     |
+                  | "calça"    | "42"    | "1"        | null     | "A cor do produto deve ser definida!"                            |
+                  | "Jaqueta"  | null    | null       | "branco" | "O tamanho e a quantidade do produto devem ser definidos!"       |
+                  | "camiseta" | "G"     | null       | null     | "A quantidade e a cor do produto devem ser definidos!"           |
+                  | "calça"    | null    | "3"        | null     | "O tamanho e a cor do produto devem ser definidos!"              |
+                  | "cueca"    | null    | null       | null     | ""O tamanho, cor e a quantidade do produto devem ser definidos!" |
 
-      Cenário: produto no carrinho inválido por tipo cor e tamanho
-      Quando eu deixar de selecionar a cor e o tamanho
-      E escolher a quantidade do produto "1> E <=10"
-      Então o deve haver uma mensagem "Selecione a cor e o tamanho da(s) roupa(s)"
-
-      Cenário: produto no carrinho inválido por tipo cor e quantidade
-      Quando eu deixar de selecionar a cor e selecionar o tamanho
-      E escolher a quantidade do produto "0 OU >10"
-      Então o deve haver uma mensagem "Selecione a cor e a quantidade da(s) roupa(s)"
-
-      Cenário: produto no carrinho inválido por tipo tamanho e quantidade
-      Quando eu deixar de selecionar o tamanho e selecionar a cor
-      E escolher a quantidade do produto "0 OU >10"
-      Então o deve haver uma mensagem "Selecione o tamanho e a quantidade da(s) roupa(s)"
-
-      Cenário: Limpar produtos
-      Quando eu quiser que retorne ao estado inicial
-      E eu clicar no botão "Limpar"
-      Então o carrinho volta ao estado inicial
-
-      Esquema de Cenário: colocar produto no carrinho
-      Quando eu adicionar <produto>
-      E escolher o <tamanho> e a <quantidade>
-      Então deve exibir a <mensagem> de sucesso
-
-      Exemplos:
-      | produto    | tamanho | quantidade | mensagem                           |
-      | "camiseta" | "G"     | "2"        | "Produto no carrinho com sucesso!" |
-      | "calça"    | "42"    | "1"        | "Produto no carrinho com sucesso!" |
-      | "Jaqueta"  | "G"     | "1"        | "Produto no carrinho com sucesso!" |
-      | "cueca"    | "G"     | "5"        | "Produto no carrinho com sucesso!" |

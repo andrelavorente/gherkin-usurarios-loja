@@ -9,11 +9,6 @@
       Contexto:
       Dado que eu queira finalizar minha compra sem ter cadastro
 
-      Cenário: Cadastro válido
-      Quando eu digitar os dados em todos os campos com asteriscos e email no formato válido
-      E clicar no botão "Finalizar Compra"
-      Então deve exibir mensagem de sucesso "Pedido gerado com sucesso"
-
 
       Cenário: Cadastro inválido por ausência de dados
       Quando eu deixar de digitar os dados em todos os campos com asteriscos e email no formato válido
